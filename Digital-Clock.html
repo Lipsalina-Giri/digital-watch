@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock Using Javascript</title>
+    <link rel="stylesheet" href="Clock_style.css">
+</head>
+
+<body>
+    <div class="hero">
+        <center><u>
+                <h1 style="padding-top: 70px;">DIGITAL CLOCK</h1>
+            </u></center>
+        <div class="container">
+
+            <div class="clock">
+                <span id="hrs">00 </span>
+                <span>:</span>
+                <span id="min">00</span>
+                <span>:</span>
+                <span id="sec">00</span>
+                <span id="am-pm"></span>
+            </div>
+            <div class="day">
+                <span id="dayName"></span>
+
+            </div>
+            <div class="date">
+                <span id="dateName"></span>
+
+            </div>
+        </div>
+
+    </div>
+    <script>
+
+        setInterval(() => {
+        const currentTime = new Date();
+        const hrs = document.getElementById("hrs").innerHTML = (currentTime.getHours() < 10 ? "0" : "") + currentTime.getHours();
+        const min = document.getElementById("min").innerHTML = (currentTime.getMinutes() < 10 ? "0" : "") + currentTime.getMinutes();
+        const sec = document.getElementById("sec").innerHTML = (currentTime.getSeconds() < 10 ? "0" : "") + currentTime.getSeconds();
+        const sheduleTime =document.getElementById("am-pm");
+
+        if(hrs >=12){
+            sheduleTime.innerHTML ='PM';
+        }else{
+            sheduleTime.innerHTML ='AM';
+        }
+
+        if(hrs > 12){
+            hrs = hrs -12;
+        }
+
+    
+        const week = new Date();
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const day = days[week.getDay()];
+        const dayName = document.getElementById("dayName").innerHTML = day;
+
+    
+        const date = new Date();
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+        const monthName = months[date.getMonth()];
+        const currentDate = date.getDate() + "-" + monthName + "-" + date.getFullYear();
+        const dateName = document.getElementById("dateName").innerHTML = currentDate;
+
+         }, 500)
+        
+    </script>
+
+</body>
+
+</html>
